@@ -1,6 +1,5 @@
 public class Person {
 
-    private int num;
     private String name;
     private String team;
     private int student;
@@ -22,15 +21,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return this.getNum()+1 + ". " + this.getStudent() + " "  + this.getName() + "   " + this.getTeam() + "팀  " + this.getTime() + "(h)  " + this.getDate();
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
+        return this.getStudent() + " "  + this.getName() + "   " + this.getTeam() + "팀  " + this.getTime() + "(h)  " + this.getDate();
     }
 
     public String getName() {

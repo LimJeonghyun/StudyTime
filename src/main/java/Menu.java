@@ -13,13 +13,14 @@ import java.io.File;
 import java.io.FileWriter;
 
 
-public class Menu {
+public class Menu<list> {
 
     BufferedReader br;
     private List<Person> list;
 
     public Menu() {
         this.list = new ArrayList<>();
+
     }
 
     public void printMenu() {
@@ -41,31 +42,31 @@ public class Menu {
         switch (input) {
 
             case "1":
-                readData();
+                readData(list);
                 break;
 
             case "2":
-                createData();
+                createData(list);
                 break;
 
             case "3":
-                updateData();
+                updateData(list);
                 break;
 
             case "4":
-                deleteData();
+                deleteData(list);
                 break;
 
             case "5":
-                existedData();
+                existedData(list);
                 break;
 
             case "6":
-                searchTeam();
+                searchTeam(list);
                 break;
 
             case "7":
-                searchName();
+                searchName(list);
                 break;
 
             case "8":
@@ -87,56 +88,71 @@ public class Menu {
         return true;
     }
 
-        private void saveData(List<Person> list){
+    private void saveData(List<Person> list){
         String path = Paths.get(".").toAbsolutePath().toString();
         String filename = path+"/data.txt";
-            try{
-                File file = new File(filename);
+        try{
+            java.io.File file = new java.io.File(filename);
 //                FileWriter fw = new FileWriter(file, true);
-                FileWriter fw = new FileWriter(file);
-//                PrintWriter printWriter = new PrintWriter(new FileWriter(filename, true));
-                for(Person p:list){
-                    fw.write(p.toString());
-                    fw.write("\r\n");
-                    fw.flush();
-                }
-                fw.close();
-                System.out.println("파일저장완료!!!");
-
-            }catch(FileNotFoundException e){
-                System.out.println("파일이 없음");
-            }catch(IOException e){
-                System.out.println(e);
+            FileWriter fw = new FileWriter(file);
+            PrintWriter printWriter = new PrintWriter(new FileWriter(filename, true));
+            for(Person p:list){
+                fw.write(p.toString());
+                fw.write("\r\n");
+                fw.flush();
             }
+            fw.close();
+            System.out.println("파일저장완료!!!");
+
+        }catch(FileNotFoundException e){
+            System.out.println("파일이 없음");
+        }catch(IOException e){
+            System.out.println(e);
+        }
     }
 
-    private void readFile(){
-        String path = Paths.get(".").toAbsolutePath().toString();
-        String filename = path+"/data.txt";
+    private List<Person>  readFile(){
         ArrayList<Person> list = new ArrayList<>();
-        File file = new File(filename);
+
+//        String path = Paths.get(".").toAbsolutePath().toString();
+//        String filename = path+"/data.txt";
+//
+//        java.io.File file = new java.io.File(filename);
         try {
+            File file = new File("data.txt");
+            FileReader reader = new FileReader(file);
+            BufferedReader bufReader = new BufferedReader(reader);
+            String line = null;
+            int i = 0;
+
             if (file.exists()) {
-                BufferedReader reader = new BufferedReader(new FileReader(file));
-//                FileReader reader = new FileReader(filename);
-                String line = null;
-                while ((line = reader.readLine()) != null) {
+                while ((line = bufReader.readLine()) != null) {
                     System.out.println(line);
 
+                    StringTokenizer st = new StringTokenizer(line, "/");
+
+                    int student = Integer.parseInt(st.nextToken().trim());
+                    String name = st.nextToken().trim();
+                    String team = st.nextToken().trim();
+                    int time = Integer.parseInt(st.nextToken().trim());
+                    String date = st.nextToken().trim();
+
+                    list.add(new Person(name, team, time, student, date));
+                    i++;
+
                 }
-                reader.close();
+                bufReader.close();
             }
         }catch (FileNotFoundException e){
             System.out.println("no file");
-            }catch(IOException e){
+        }catch(IOException e){
             System.out.println(e);
         }
-//        return
-
+        return list;
     }
 
 
-    private void searchTeam(){
+    private void searchTeam(List<Person> list){
 
         if( this.list.size() == 0 ){
             System.out.println("데이터가 존재하지 않습니다.");
@@ -166,7 +182,7 @@ public class Menu {
 
     }
 
-    private void searchName(){
+    private void searchName(List<Person> list){
 
         if( this.list.size() == 0 ){
             System.out.println("데이터가 존재하지 않습니다.");
@@ -197,7 +213,7 @@ public class Menu {
 
 
 
-    private void existedData(){
+    private void existedData(List<Person> list){
         if( this.list.size() == 0 ){
             System.out.println("데이터가 존재하지 않습니다.");
             return;
@@ -211,14 +227,14 @@ public class Menu {
         try{
             String choice = br.readLine();
             if(choice.equals("1")){
-                searchName();
+                searchName(list);
             }
             else if(choice.equals("2")){
-                searchTeam();
+                searchTeam(list);
             }
             else {
                 System.out.println("틀린 번호 입니다.");
-                existedData();
+                existedData(list);
             }
 
             System.out.println("업데이트할 번호 입력");
@@ -234,15 +250,16 @@ public class Menu {
         }
     }
 
-    private void deleteData() {
+    private void deleteData(List<Person> list) {
 
         if( this.list.size() == 0 ){
             System.out.println("데이터가 존재하지 않습니다.");
             return;
         }
+        int i = 1;
         for (Person p: this.list) {
             System.out.println("No Id Name Team Time(h) Date");
-            System.out.println(p.toString());
+            System.out.println(i + p.toString());
         }
 
         System.out.println("삭제할 번호 입력");
@@ -251,18 +268,16 @@ public class Menu {
             int num = Integer.parseInt(br.readLine())-1;
             if(valid(num)) {
                 this.list.remove(num);
-                for(int i=0; i < list.size(); i++)
-                    this.list.get(i).setNum(i);
                 System.out.println("삭제되었습니다.");
             }else {
-                deleteData();
+                deleteData(list);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void updateData() {
+    private void updateData(List<Person> list) {
 
         if( this.list.size() == 0 ){
             System.out.println("데이터가 존재하지 않습니다.");
@@ -270,9 +285,10 @@ public class Menu {
         }
 
         try {
+            int i = 1;
             for (Person p: this.list) {
                 System.out.println("No Id Name Team Time(h) Date");
-                System.out.println(p.toString());
+                System.out.println(i + p.toString());
             }
 
             System.out.println("수정할 번호 입력");
@@ -289,14 +305,14 @@ public class Menu {
                 this.list.get(num).setTime(Integer.parseInt(br.readLine()));
                 System.out.println("수정되었습니다.");
             } else {
-                updateData();
+                updateData(list);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void createData() {
+    private void createData(List<Person> list) {
         Person p = new Person();
         try {
             System.out.println("이름 입력");
@@ -311,7 +327,6 @@ public class Menu {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        p.setNum(this.list.size());
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String regDate = date.format(formatter);
@@ -320,7 +335,7 @@ public class Menu {
         System.out.println("추가되었습니다.");
     }
 
-    private void readData() {
+    private void readData(List<Person> list) {
 
         if( this.list.size() == 0 ){
             System.out.println("데이터가 존재하지 않습니다.");
@@ -329,8 +344,9 @@ public class Menu {
 
         System.out.println("No Id Name Team Time(h)");
         System.out.println("==========================================");
+        int i =1;
         for (Person p: this.list) {
-            System.out.println(p.toString());
+            System.out.println(i + p.toString());
         }
     }
 
