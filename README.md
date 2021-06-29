@@ -10,6 +10,7 @@
 <img width="144" alt="스크린샷 2021-06-29 오전 10 44 25" src="https://user-images.githubusercontent.com/61608298/123724247-fa560e00-d8c6-11eb-9bae-100f7989fac7.png">
 
 + 조회
+
 <img width="410" alt="스크린샷 2021-06-29 오전 10 44 09" src="https://user-images.githubusercontent.com/61608298/123724231-f1653c80-d8c6-11eb-8ad8-a7d1b9e9441f.png">
 
 
@@ -23,7 +24,7 @@
 + 기존 등록
 <img width="368" alt="스크린샷 2021-06-29 오전 10 46 12" src="https://user-images.githubusercontent.com/61608298/123724393-3a1cf580-d8c7-11eb-803e-f353ccd08b69.png">
 
-+조회 (등록 후)
++ 조회 (등록 후)
 <img width="408" alt="스크린샷 2021-06-29 오전 10 46 39" src="https://user-images.githubusercontent.com/61608298/123724437-4acd6b80-d8c7-11eb-8d0c-cd2dd4e1e33e.png">
 
 + 수정
