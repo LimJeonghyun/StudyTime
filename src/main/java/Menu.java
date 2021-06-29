@@ -18,10 +18,10 @@ public class Menu {
     public void printMenu() {
         System.out.println("---menu---");
         System.out.println("1. 조회");
-        System.out.println("2. 신규 추가");
+        System.out.println("2. 신규 등록");
         System.out.println("3. 수정");
         System.out.println("4. 삭제");
-        System.out.println("5. 기존 추가");
+        System.out.println("5. 기존 등록");
         System.out.println("6. 팀 검색");
         System.out.println("7. 이름 검색");
         System.out.println("0. 종료");
@@ -155,11 +155,11 @@ public class Menu {
             }
 
             System.out.println("업데이트할 번호 입력");
-            int num = Integer.parseInt(br.readLine());
-            if(valid(num-1)) {
+            int num = Integer.parseInt(br.readLine())-1;
+            if(valid(num)) {
                 System.out.println("시간 입력");
                 int t = Integer.parseInt((br.readLine()));
-                this.list.get(num-1).setTime(this.list.get(num-1).getTime()+t);
+                this.list.get(num).setTime(this.list.get(num).getTime()+t);
                 System.out.println("업데이트되었습니다.");
             }
         }catch (IOException e) {
@@ -174,8 +174,8 @@ public class Menu {
             return;
         }
         for (Person p: this.list) {
-            System.out.println(p.getNum()+1 + "번째 학생 이름:" + p.getName() + "팀명: " + p.getTeam());
-            System.out.println(" 누적 시간: " + p.getTime());
+            System.out.println("No StudentId Name Team Time(h) Date");
+            System.out.println(p.toString());
         }
 
         System.out.println("삭제할 번호 입력");
@@ -204,8 +204,8 @@ public class Menu {
 
         try {
             for (Person p: this.list) {
-                System.out.println(p.getNum()+1 + "번째 학생 이름:" + p.getName() + "팀명: " + p.getTeam());
-                System.out.println(" 누적 시간: " + p.getTime());
+                System.out.println("No StudentId Name Team Time(h) Date");
+                System.out.println(p.toString());
             }
 
             System.out.println("수정할 번호 입력");
