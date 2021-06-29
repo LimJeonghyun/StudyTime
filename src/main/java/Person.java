@@ -22,7 +22,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return this.getNum()+1 + ". " + this.getStudent() + "       "  + this.getName() + "   " + this.getTeam() + "팀  " + this.getTime() + "(h)  " + this.getDate();
+        return this.getNum()+1 + ". " + this.getStudent() + " "  + this.getName() + "   " + this.getTeam() + "팀  " + this.getTime() + "(h)  " + this.getDate();
     }
 
     public int getNum() {

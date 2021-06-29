@@ -1,3 +1,4 @@
+//import org.apache.commons.io.FileUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,6 +6,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
+import java.io.*;
+import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileWriter;
+
 
 public class Menu {
 
@@ -24,6 +31,8 @@ public class Menu {
         System.out.println("5. 기존 등록");
         System.out.println("6. 팀 검색");
         System.out.println("7. 이름 검색");
+        System.out.println("8. 파일 저장");
+        System.out.println("9. 파일 읽어오기");
         System.out.println("0. 종료");
         System.out.println("----------");
     }
@@ -59,6 +68,15 @@ public class Menu {
                 searchName();
                 break;
 
+            case "8":
+                saveData(list);
+                break;
+
+            case "9":
+                readFile();
+                break;
+
+
             case "0":
                 System.out.println("종료");
                 return false;
@@ -68,6 +86,55 @@ public class Menu {
         }
         return true;
     }
+
+        private void saveData(List<Person> list){
+        String path = Paths.get(".").toAbsolutePath().toString();
+        String filename = path+"/data.txt";
+            try{
+                File file = new File(filename);
+//                FileWriter fw = new FileWriter(file, true);
+                FileWriter fw = new FileWriter(file);
+//                PrintWriter printWriter = new PrintWriter(new FileWriter(filename, true));
+                for(Person p:list){
+                    fw.write(p.toString());
+                    fw.write("\r\n");
+                    fw.flush();
+                }
+                fw.close();
+                System.out.println("파일저장완료!!!");
+
+            }catch(FileNotFoundException e){
+                System.out.println("파일이 없음");
+            }catch(IOException e){
+                System.out.println(e);
+            }
+    }
+
+    private void readFile(){
+        String path = Paths.get(".").toAbsolutePath().toString();
+        String filename = path+"/data.txt";
+        ArrayList<Person> list = new ArrayList<>();
+        File file = new File(filename);
+        try {
+            if (file.exists()) {
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+//                FileReader reader = new FileReader(filename);
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+
+                }
+                reader.close();
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("no file");
+            }catch(IOException e){
+            System.out.println(e);
+        }
+//        return
+
+    }
+
 
     private void searchTeam(){
 
@@ -86,7 +153,7 @@ public class Menu {
             for(Person p : list){
                 if(p.getTeam().equals(te)){
                     if(!check) {
-                        System.out.println("No StudentId Name Team Time(h) Date");
+                        System.out.println("No Id Name Team Time(h) Date");
                         check = true;
                     }
                     System.out.println(p.toString());
@@ -116,7 +183,7 @@ public class Menu {
             for(Person p : list){
                 if(p.getName().equals(name)){
                     if(!check) {
-                        System.out.println("No StudentId Name Team Time(h) Date");
+                        System.out.println("No Id Name Team Time(h) Date");
                         check = true;
                     }
                     System.out.println(p.toString());
@@ -174,7 +241,7 @@ public class Menu {
             return;
         }
         for (Person p: this.list) {
-            System.out.println("No StudentId Name Team Time(h) Date");
+            System.out.println("No Id Name Team Time(h) Date");
             System.out.println(p.toString());
         }
 
@@ -204,7 +271,7 @@ public class Menu {
 
         try {
             for (Person p: this.list) {
-                System.out.println("No StudentId Name Team Time(h) Date");
+                System.out.println("No Id Name Team Time(h) Date");
                 System.out.println(p.toString());
             }
 
@@ -260,12 +327,13 @@ public class Menu {
             return;
         }
 
-        System.out.println("No StudentId Name Team Time(h)");
+        System.out.println("No Id Name Team Time(h)");
         System.out.println("==========================================");
         for (Person p: this.list) {
             System.out.println(p.toString());
         }
     }
+
 
     private boolean valid(int num) {
         // 배열 범위
