@@ -35,3 +35,10 @@
 <img width="238" alt="스크린샷 2021-06-29 오전 10 48 24" src="https://user-images.githubusercontent.com/61608298/123724573-89fbbc80-d8c7-11eb-95b3-7259b3a5fc4d.png">
 <img width="235" alt="스크린샷 2021-06-29 오전 10 48 37" src="https://user-images.githubusercontent.com/61608298/123724594-908a3400-d8c7-11eb-82bc-b5aef1692c20.png">
 
++ 파일 저장
+<img width="125" alt="스크린샷 2021-06-30 오전 11 10 54" src="https://user-images.githubusercontent.com/61608298/123891407-d7ddf680-d993-11eb-8e73-713117969280.png">
+<img width="716" alt="스크린샷 2021-06-30 오전 11 11 24" src="https://user-images.githubusercontent.com/61608298/123891653-33a87f80-d994-11eb-916d-a0be1e0c6e95.png">
+
++ 파일 불러오기
+<img width="383" alt="스크린샷 2021-06-30 오전 11 13 50" src="https://user-images.githubusercontent.com/61608298/123891691-402cd800-d994-11eb-9d88-1de8d79062a2.png">
+
