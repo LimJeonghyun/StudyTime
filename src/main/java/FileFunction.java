@@ -12,7 +12,7 @@ public class FileFunction {
             String filename = path+"/data.txt";
             File file = new File(filename);
 //                FileWriter fw = new FileWriter(file, true);
-            FileWriter fw = new FileWriter(file, true);
+            FileWriter fw = new FileWriter(file, false);
 //            PrintWriter printWriter = new PrintWriter(new FileWriter(filename, true));
             for(Person p:list){
 //                fw.write(p.toString() + "\n");
