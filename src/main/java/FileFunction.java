@@ -43,13 +43,14 @@ public class FileFunction {
 
                     StringTokenizer st = new StringTokenizer(line, "/");
 
+                    int num = Integer.parseInt(st.nextToken().trim());
                     String name = st.nextToken().trim();
                     int student = Integer.parseInt(st.nextToken().trim());
                     String team = st.nextToken().trim();
                     int time = Integer.parseInt(st.nextToken().trim());
                     String date = st.nextToken().trim();
 
-                    list.add(new Person(i, name, team, time, student, date));
+                    list.add(new Person(num, name, team, time, student, date));
                     i++;
                 }
                 bufReader.close();
