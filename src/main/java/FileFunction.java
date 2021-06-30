@@ -16,7 +16,7 @@ public class FileFunction {
 //            PrintWriter printWriter = new PrintWriter(new FileWriter(filename, true));
             for(Person p:list){
 //                fw.write(p.toString() + "\n");
-                fw.write(p.getName() + " / " + p.getStudent() + " / " + p.getTeam() + " / " + p.getTime() + " / " + p.getDate() + "\n");
+                fw.write(p.getNum() + "/" + p.getName() + " / " + p.getStudent() + " / " + p.getTeam() + " / " + p.getTime() + " / " + p.getDate() + "\n");
             }
             fw.flush();
             fw.close();
@@ -37,6 +37,7 @@ public class FileFunction {
                 FileReader reader = new FileReader(file);
                 BufferedReader bufReader = new BufferedReader(reader);
                 String line = "";
+                int i = 0;
 
                 while ((line = bufReader.readLine()) != null) {
 
@@ -48,7 +49,8 @@ public class FileFunction {
                     int time = Integer.parseInt(st.nextToken().trim());
                     String date = st.nextToken().trim();
 
-                    list.add(new Person(name, team, time, student, date));
+                    list.add(new Person(i, name, team, time, student, date));
+                    i++;
                 }
                 bufReader.close();
             }catch (FileNotFoundException e){

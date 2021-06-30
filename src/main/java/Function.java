@@ -40,7 +40,9 @@ public class Function {
             if(Crud.valid(list, num)) {
                 System.out.println("시간 입력");
                 int t = Integer.parseInt((br.readLine()));
-                list.get(num).setTime(list.get(num).getTime()+t);
+                int total = t + list.get(num).getTime();
+                System.out.println("time :" + total);
+                list.get(num).setTime(total);
                 System.out.println("업데이트되었습니다.");
             }
         }catch (IOException e) {
@@ -54,11 +56,9 @@ public class Function {
             System.out.println("데이터가 존재하지 않습니다.");
             return;
         }
-        int i = 1;
         for (Person p: list) {
             System.out.println("No Id Name Team Time(h) Date");
-            System.out.println(i + "." + p.toString());
-            i++;
+            System.out.println(p.toString());
         }
 
         System.out.println("삭제할 번호 입력");
@@ -84,11 +84,9 @@ public class Function {
         }
 
         try {
-            int i = 1;
             for (Person p: list) {
                 System.out.println("No Id Name Team Time(h) Date");
-                System.out.println(i + ". " + p.toString());
-                i++;
+                System.out.println(p.toString());
             }
 
             System.out.println("수정할 번호 입력");
@@ -115,6 +113,7 @@ public class Function {
     public void createData(ArrayList<Person> list) {
 
         Person p = new Person();
+        int num = list.size();
         try {
             System.out.println("이름 입력");
             br = new BufferedReader(new InputStreamReader(System.in));
@@ -129,6 +128,7 @@ public class Function {
             System.out.println("시간 입력");
 //            time = Integer.parseInt(br.readLine());
             p.setTime(Integer.parseInt(br.readLine()));
+            p.setNum(num);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -150,10 +150,8 @@ public class Function {
 
         System.out.println("No Id Name Team Time(h)");
         System.out.println("==========================================");
-        int i =1;
         for (Person p: list) {
-            System.out.println(i +". "+ p.toString());
-            i++;
+            System.out.println(p.toString());
         }
     }
 

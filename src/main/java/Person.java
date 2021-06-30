@@ -5,23 +5,25 @@ public class Person {
     private int student;
     private int time;
     private String Date;
+    private int num;
 
     public Person() {
 
     }
 
-    public Person(String name, String team, int time, int student, String Date) {
+    public Person(int num, String name, String team, int time, int student, String Date) {
         this.name = name;
         this.team = team;
         this.time = time;
         this.student = student;
         this.Date = Date;
+        this.num = num;
 
     }
 
     @Override
     public String toString() {
-        return this.getStudent() + " "  + this.getName() + "   " + this.getTeam() + "팀  " + this.getTime() + "(h)  " + this.getDate();
+        return this.getNum()+1 + ". " + this.getStudent() + " "  + this.getName() + "   " + this.getTeam() + "팀  " + this.getTime() + "(h)  " + this.getDate();
     }
 
     public String getName() {
@@ -62,5 +64,13 @@ public class Person {
 
     public void setDate(String date) {
         Date = date;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 }

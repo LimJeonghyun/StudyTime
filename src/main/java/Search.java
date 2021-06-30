@@ -22,15 +22,13 @@ public class Search {
             String te = br.readLine();
             boolean check = false;
 
-            int i = 1;
             for(Person p : list){
                 if(p.getTeam().equals(te)){
                     if(!check) {
                         System.out.println("No Id Name Team Time(h) Date");
                         check = true;
                     }
-                    System.out.println(i + ". " + p.toString());
-                    i++;
+                    System.out.println(p.toString());
                 }
             }
             if(!check) System.out.println("검색 결과 없음");
@@ -53,15 +51,13 @@ public class Search {
             String name = br.readLine();
             boolean check = false;
 
-            int i = 1;
             for(Person p : list){
                 if(p.getName().equals(name)){
                     if(!check) {
                         System.out.println("No Id Name Team Time(h) Date");
                         check = true;
                     }
-                    System.out.println(i + ". " + p.toString());
-                    i++;
+                    System.out.println(p.toString());
                 }
             }
             if(!check) System.out.println("검색 결과 없음");
